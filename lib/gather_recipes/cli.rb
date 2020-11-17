@@ -13,7 +13,7 @@ class GatherRecipes::CLI
     end
 
     def get_ingredients
-        @ingredients = ['apples', 'artichokes', 'asparagus', 'avocado', 'banana']
+        GatherRecipes::Ingredient.all
     end
 
     def list_ingredients 
