@@ -2,6 +2,7 @@ require_relative "./gather_recipes/version"
 require_relative "./gather_recipes/cli"
 require_relative "./gather_recipes/ingredients"
 require_relative "./gather_recipes/scraper"
+require_relative "./gather_recipes/recipes"
 
 require "pry"
 require "nokogiri"

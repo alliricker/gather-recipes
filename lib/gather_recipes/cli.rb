@@ -34,12 +34,12 @@ class GatherRecipes::CLI
 
     def show_recipes_for(ingredient_input)
         ingredient = @ingredients[ingredient_input - 1]
-        ingredient.get_user_recipe
-        puts "Here are your recipes for #{ingredient}"
+        ingredient.get_recipes 
+        puts "Here are your recipes for #{ingredient.name}"
         ingredient.recipes.each.with_index(1) do |recipe, index|
-            puts "#{index}. #{recipe}" 
+            puts "#{index}. #{recipe.name}" 
         end
-        get_user_ingredient(ingredient)
+        get_user_recipe(ingredient)
     end
 
     def get_user_recipe(ingredient)

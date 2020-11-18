@@ -12,5 +12,19 @@ class GatherRecipes::Scraper
           GatherRecipes::Ingredient.new(name, ref)
         end
     end
+
+    def self.scrape_recipes(ingredient)
+        page = Nokogiri::HTML(open("https://www.loveandlemons.com/recipes/"))
+        
+        recipes = page.css("ol.rb-items li")
+        
+        recipes.find do |i|
+            name = i.css('div.thumbnail_text_content').text.strip
+            GatherRecipes::Recipe.new(name, ingredient)
+        end
+    end
+    
+
+
         
     end
