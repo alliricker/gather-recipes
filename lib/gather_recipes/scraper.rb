@@ -23,7 +23,7 @@ class GatherRecipes::Scraper
         recipes.each do |i|
             name = i.css('div.thumbnail_text_content').text.strip
             url = i.css("a").attr("href").value 
-            GatherRecipes::Recipe.new(name, ingredient, url)
+            GatherRecipes::Recipe.new(name, ingredient)
         end
     end
     
