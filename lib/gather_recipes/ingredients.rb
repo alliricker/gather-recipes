@@ -10,7 +10,7 @@ class GatherRecipes::Ingredient
     end
 
     def self.all
-        GatherRecipes::Scraper.scrape_ingredients 
+        GatherRecipes::Scraper.scrape_ingredients
         @@all
     end
 

@@ -19,7 +19,7 @@ class GatherRecipes::CLI
     def list_ingredients 
         puts "Choose an ingredient to see recipes"
         @ingredients.each.with_index(1) do |ingredient, index|
-            puts "#{index}. #{ingredient}"
+            puts "#{index}. #{ingredient.name}"
         end
     end
 
