@@ -13,18 +13,18 @@ class GatherRecipes::Scraper
         end
     end
 
+
     def self.scrape_recipes(ingredient)
-        page = Nokogiri::HTML(open("https://www.loveandlemons.com/recipes/"))
+        url = "https://www.loveandlemons.com/recipes/ingredient-#{ingredient.name}/"
+        page = Nokogiri::HTML(open(url))
         
         recipes = page.css("ol.rb-items li")
         
-        recipes.find do |i|
+        recipes.each do |i|
             name = i.css('div.thumbnail_text_content').text.strip
-            GatherRecipes::Recipe.new(name, ingredient)
+            url = i.css("a").attr("href").value 
+            GatherRecipes::Recipe.new(name, ingredient, url)
         end
     end
     
-
-
-        
-    end
+ end

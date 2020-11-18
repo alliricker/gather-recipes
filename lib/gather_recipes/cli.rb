@@ -36,8 +36,7 @@ class GatherRecipes::CLI
         ingredient = @ingredients[ingredient_input - 1]
         ingredient.get_recipes 
         puts "Here are your recipes for #{ingredient.name}"
-        ingredient.recipes.each.with_index(1) do |recipe, index|
-            puts "#{index}. #{recipe.name}" 
+         
         end
         get_user_recipe(ingredient)
     end
@@ -52,7 +51,7 @@ class GatherRecipes::CLI
 
     def show_recipe_details(recipe)
         puts recipe.name
-        recipe.key_info.each { |i| puts "- #{1}"}
+        recipe.key_info.each { |i| puts "- #{i}"}
     end
 
     def next_option
