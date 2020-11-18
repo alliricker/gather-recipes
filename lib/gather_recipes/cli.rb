@@ -13,7 +13,7 @@ class GatherRecipes::CLI
     end
 
     def get_ingredients
-        GatherRecipes::Ingredient.all
+       @ingredients = GatherRecipes::Ingredient.all
     end
 
     def list_ingredients 

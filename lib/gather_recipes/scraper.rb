@@ -1,8 +1,7 @@
 class GatherRecipes::Scraper
 
     def self.scrape_ingredients
-        site = "https://www.loveandlemons.com/recipes/"
-        page = Nokogiri::HTML(open(site))
+        page = Nokogiri::HTML(open("https://www.loveandlemons.com/recipes/"))
         
         ingredients = page.css (
         "div.lnl-rb-ingredient")
@@ -12,5 +11,6 @@ class GatherRecipes::Scraper
           ref = r.attr("value")
           GatherRecipes::Ingredient.new(name, ref)
         end
+    end
         
     end
