@@ -10,7 +10,7 @@ class GatherRecipes::Category
     end
 
     def self.all
-        GatherRecipes::Scraper.scrape_categories
+        GatherRecipes::Scraper.scrape_categories if @@all.empty?
         @@all
     end
 
