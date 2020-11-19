@@ -4,39 +4,39 @@ class GatherRecipes::CLI
         puts "Welcome to Gather!"
         @input = ""
         until @input == "exit"
-            get_ingredients
-            list_ingredients
-            get_user_ingredient
+            get_categories
+            list_categories
+            get_user_category
             next_option
         end
         bye
     end
 
-    def get_ingredients
-       @ingredients = GatherRecipes::Ingredient.all
+    def get_categories
+       @categories = GatherRecipes::Category.all
     end
 
-    def list_ingredients 
-        puts "Choose an ingredient to see recipes:"
-        @ingredients.each.with_index(1) do |ingredient, index|
-            puts "#{index}. #{ingredient.name}"
+    def list_categories
+        puts "Choose a category to see recipes:"
+        @categories.each.with_index(1) do |category, index|
+            puts "#{index}. #{category.name}"
         end
     end
 
-    def get_user_ingredient
-        ingredient_input = gets.strip .to_i
-        show_recipes_for(ingredient_input) if valid_input(ingredient_input, @ingredients)
+    def get_user_category
+        category_input = gets.strip.to_i
+        show_recipes_for(category_input) if valid_input(category_input, @categories)
     end
 
     def valid_input(input, data)
         input.to_i <= data.length && input.to_i > 0
     end
 
-    def show_recipes_for(ingredient_input)
-        ingredient = @ingredients[ingredient_input - 1]
-        ingredient.get_recipes 
-        puts "Here are the recipes for #{ingredient.name}:"
-        ingredient.recipes.each.with_index(1) do |recipe, index|
+    def show_recipes_for(category_input)
+        category = @categories[category_input - 1]
+        category.get_recipes 
+        puts "Here are the recipes for #{category.name}:"
+        category.recipes.each.with_index(1) do |recipe, index|
             puts "#{index}. #{recipe.name}"
         end
     end

@@ -1,30 +1,31 @@
 class GatherRecipes::Scraper
 
-    def self.scrape_ingredients
-        page = Nokogiri::HTML(open("https://www.loveandlemons.com/recipes/"))
+    def self.scrape_categories
+        page = Nokogiri::HTML(open("https://www.halfbakedharvest.com/category/recipes/"))
         
-        ingredients = page.css (
-        "div.lnl-rb-ingredient")
+        categories = page.css("ul.children li")[11..14]
         
-        ingredients.each do |r|
-          name = r.css('span.category-name').text.strip
-          ref = r.attr("value")
-          GatherRecipes::Ingredient.new(name, ref)
+        categories.each do |c|
+          name = c.css("a").text.strip
+          ref = c.attr("value")
+          GatherRecipes::Category.new(name, ref)
         end
     end
 
 
-    def self.scrape_recipes(ingredient)
-        url = "https://www.loveandlemons.com/recipes/ingredient-#{ingredient.name}/"
-        page = Nokogiri::HTML(open(url))
+    def self.scrape_recipes(category)
+        GatherRecipes::Recipe.new("yummy", category)
+        GatherRecipes::Recipe.new("yucky", category)
+        #url = "https://www.halfbakedharvest.com/category/recipes/diet-specific/#{category.ref}/"
+        #page = Nokogiri::HTML(open(url))
         
-        recipes = page.css("ol.rb-items li")
+        #recipes = page.css("a.recipe-block")
         
-        recipes.each do |i|
-            name = i.css('div.thumbnail_text_content').text.strip
-            url = i.css("a").attr("href").value 
-            GatherRecipes::Recipe.new(name, ingredient)
-        end
+        #recipes.each do |r|
+            #name = r.css("span")[1].text.strip.chomp(".")
+            #url = r.css("a").attr("href")
+            #GatherRecipes::Recipe.new(name, category)
+        #end
     end
     
  end

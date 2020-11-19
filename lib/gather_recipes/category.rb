@@ -1,4 +1,4 @@
-class GatherRecipes::Ingredient
+class GatherRecipes::Category
     attr_accessor :name , :ref, :recipes
     @@all = []
 
@@ -10,7 +10,7 @@ class GatherRecipes::Ingredient
     end
 
     def self.all
-        GatherRecipes::Scraper.scrape_ingredients
+        GatherRecipes::Scraper.scrape_categories
         @@all
     end
 
