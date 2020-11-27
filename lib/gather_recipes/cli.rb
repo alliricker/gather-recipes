@@ -39,7 +39,6 @@ class GatherRecipes::CLI
         category.recipes.each.with_index(1) do |recipe, index|
             puts "#{index}. #{recipe.name}"
         end
-        binding.pry
     end
 
 

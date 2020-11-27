@@ -1,9 +1,10 @@
 class GatherRecipes::Category
-    attr_accessor :name , :recipes
+    attr_accessor :name , :ref, :recipes
     @@all = []
 
-    def initialize (name, recipes)
+    def initialize (name, ref)
         @name = name
+        @ref = ref 
         @recipes = []
         save
     end
