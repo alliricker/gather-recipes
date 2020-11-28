@@ -39,8 +39,23 @@ class GatherRecipes::CLI
         category.recipes.each.with_index(1) do |recipe, index|
             puts "#{index}. #{recipe.name}"
         end
+        get_user_recipe(category)
     end
 
+    def get_user_recipe(category)
+        puts "Choose a recipe to see more details"
+        input = gets.strip
+        recipe = category.recipes[input.to_i - 1]
+        recipe.get_recipe_measurements
+        show_recipe_measurements(recipe)
+    end
+
+    def show_recipe_measurements(recipe)
+        puts recipe.name
+        recipe.measurements.each do |i|
+            puts "- #{i}"
+        end
+    end
 
 
     def next_option
@@ -51,6 +66,5 @@ class GatherRecipes::CLI
     def bye
         puts "See you later!"
     end
-
 
 end

@@ -1,3 +1,4 @@
+
 class GatherRecipes::Scraper
 
     def self.scrape_categories
@@ -12,7 +13,6 @@ class GatherRecipes::Scraper
         end
     end
 
-
     def self.scrape_recipes(category)
         if category.name == "vegetarian" || category.name == "healthy-ish"
             url = "https://www.halfbakedharvest.com/category/recipes/diet-specific/#{category.name}/"
@@ -20,9 +20,9 @@ class GatherRecipes::Scraper
         
             recipes = page.css("a.recipe-block")
         
-         recipes.each do |r|
+            recipes.each do |r|
                 name = r.css("span")[1].text.strip.chomp(".")
-                url = r.css("a").attr("href")
+                url = r.css("a").attr("href").value
                 GatherRecipes::Recipe.new(name, category, url)
             end
 
@@ -39,5 +39,23 @@ class GatherRecipes::Scraper
             end
         end
     end
+
+    def self.scrape_ingredients(recipe)
+        url = "https://www.halfbakedharvest.com/#{recipe.url}"
+        page = Nokogiri::HTML(open(url))
+
+        recipe_ingredients = page.css("ul.wprm-recipe-ingredients li")
+
+        recipe_ingredients.each do |i|
+            amount = i.css("span.wprm-recipe-ingredient-amount").text.strip
+            #unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
+            #name = i.css("span.wprm-recipe-ingredient-name").text.strip
+            recipe.measurements << amount
+
+         end
+        end
+        
+
+       
+
 end
-    
