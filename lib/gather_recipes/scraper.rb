@@ -34,14 +34,14 @@ class GatherRecipes::Scraper
         
             recipes.each do |r|
                 name = r.css("span")[1].text.strip.chomp(".")
-                url = r.css("a").attr("href")
+                url = r.attribute('href')
                 GatherRecipes::Recipe.new(name, category, url)
             end
         end
     end
 
     def self.scrape_ingredients(recipe)
-        url = "https://www.halfbakedharvest.com/#{recipe.url}"
+        url = recipe.url
         page = Nokogiri::HTML(open(url))
 
         recipe_ingredients = page.css("ul.wprm-recipe-ingredients li")
@@ -51,6 +51,7 @@ class GatherRecipes::Scraper
             #unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
             #name = i.css("span.wprm-recipe-ingredient-name").text.strip
             recipe.measurements << amount
+           
 
          end
         end
