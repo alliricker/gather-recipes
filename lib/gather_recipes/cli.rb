@@ -52,9 +52,7 @@ class GatherRecipes::CLI
 
     def show_recipe_measurements(recipe)
         puts recipe.name
-        recipe.measurements.each do |i|
-            puts "- #{i}"
-        end
+        puts recipe.measurements.join(" ")
     end
 
 

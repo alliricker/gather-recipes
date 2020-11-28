@@ -48,9 +48,9 @@ class GatherRecipes::Scraper
 
         recipe_ingredients.each do |i|
             amount = i.css("span.wprm-recipe-ingredient-amount").text.strip
-            #unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
-            #name = i.css("span.wprm-recipe-ingredient-name").text.strip
-            recipe.measurements << amount
+            unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
+            name = i.css("span.wprm-recipe-ingredient-name").text.strip
+            recipe.measurements << amount << unit << name
            
 
          end
