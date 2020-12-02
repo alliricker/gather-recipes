@@ -1,8 +1,9 @@
 require "pry"
+require "colorize"
+
 class GatherRecipes::CLI 
     def call
-        puts "Welcome to Gather!"
-        @input = ""
+        puts "Welcome to Gather!".colorize(:blue).bold
         until @input == "exit"
             get_categories
             list_categories
@@ -17,7 +18,7 @@ class GatherRecipes::CLI
     end
 
     def list_categories
-        puts "Choose a category to see recipes:"
+        puts "Type a category number to see recipes:".colorize(:green)
         @categories.each.with_index(1) do |category, index|
             puts "#{index}. #{category.name}"
         end
@@ -35,7 +36,7 @@ class GatherRecipes::CLI
     def show_recipes_for(category_input)
         category = @categories[category_input - 1]
         category.get_recipes 
-        puts "Here are the recipes for #{category.name}:"
+        puts "Here are the recipes for #{category.name} diets:".colorize(:green)
         category.recipes.each.with_index(1) do |recipe, index|
             puts "#{index}. #{recipe.name}"
         end
@@ -43,7 +44,7 @@ class GatherRecipes::CLI
     end
 
     def get_user_recipe(category)
-        puts "Choose a recipe to see more details"
+        puts "Type a recipe number to see a list of ingredients.".colorize(:green)
         input = gets.strip
         recipe = category.recipes[input.to_i - 1]
         recipe.get_recipe_measurements
@@ -56,22 +57,20 @@ class GatherRecipes::CLI
     end
 
     def show_user_recipe(recipe)
-        puts "Would you like to see the recipe? Y/N"
+        puts "Would you like to see the recipe? Y/N".colorize(:green)
         input = gets.strip
         if input == "Y"
             recipe.get_full_recipe
-        else
-            next_option
         end
     end
           
     def next_option
-        puts "If you are done, type 'exit' to end the program. Hit any key to continue."
+        puts "If you are done, type 'exit' to end the program. Hit any key to continue.".colorize(:green)
         @input = gets.strip
     end
 
     def bye
-        puts "See you later!"
+        puts "See you later!".colorize(:blue)
     end
 
 end

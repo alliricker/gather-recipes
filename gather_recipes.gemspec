@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Allison Ricker"]
   spec.email         = ["alliricker@gmail.com"]
 
-  spec.summary       = "Scrape recipes and compile shopping lists"
-  spec.description   =  "Scrape recipes and compile shopping lists"
+  spec.summary       = "Scrape recipes for specialized diets"
+  spec.description   =  "Scrape recipes for specialized diets"
   spec.homepage      = "https://github.com/alliricker/gather-recipes.git"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
   spec.add_dependency "nokogiri"
+  spec.add_dependency "colorize"
 end
