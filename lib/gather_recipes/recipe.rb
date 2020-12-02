@@ -22,10 +22,14 @@ class GatherRecipes::Recipe
     def get_recipe_measurements 
         GatherRecipes::Scraper.scrape_ingredients(self) if @measurements.empty?
     end
+
+    def get_full_recipe
+        GatherRecipes::Scraper.scrape_recipe(self) 
+    end
     
     def save
         @@all << self
     end
-    
-    end
+
+end
     

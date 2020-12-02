@@ -1,5 +1,5 @@
 require "pry"
-class GatherRecipes::CLI
+class GatherRecipes::CLI 
     def call
         puts "Welcome to Gather!"
         @input = ""
@@ -51,11 +51,20 @@ class GatherRecipes::CLI
     end
 
     def show_recipe_measurements(recipe)
-        puts recipe.name
-        puts recipe.measurements.join(" ")
+        recipe.measurements
+        show_user_recipe(recipe)
     end
 
-
+    def show_user_recipe(recipe)
+        puts "Would you like to see the recipe? Y/N"
+        input = gets.strip
+        if input == "Y"
+            recipe.get_full_recipe
+        else
+            next_option
+        end
+    end
+          
     def next_option
         puts "If you are done, type 'exit' to end the program. Hit any key to continue."
         @input = gets.strip
