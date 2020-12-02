@@ -1,8 +1,6 @@
 # GatherRecipes
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gather_recipes`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem scrapes diet-specific recipes from the blog "Half Baked Harvest" and provides an ingredient list as well as an optional recipe print out. 
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run "./bin/gather" to use Gather.
 
 ## Development
 
