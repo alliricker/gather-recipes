@@ -43,9 +43,8 @@ class GatherRecipes::Scraper
     def self.scrape_ingredients(recipe)
         url = recipe.url
         page = Nokogiri::HTML(open(url))
-
+        puts "#{recipe.name}:".bold
         recipe_ingredients = page.css("ul.wprm-recipe-ingredients li")
-        puts "#{recipe.name}:"
         recipe_ingredients.each do |i|
             amount = i.css("span.wprm-recipe-ingredient-amount").text.strip
             unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
@@ -58,7 +57,7 @@ class GatherRecipes::Scraper
     def self.scrape_recipe(recipe)
         url = recipe.url
         page = Nokogiri::HTML(open(url))
-
+        puts "#{recipe.name}:".bold
         full_recipe = page.css("ol.wprm-recipe-instructions li")[0]
         full_recipe.css("p").each do |i|
           puts i.text

@@ -1,4 +1,3 @@
-require "pry"
 require "colorize"
 
 class GatherRecipes::CLI 

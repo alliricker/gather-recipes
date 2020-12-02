@@ -1,3 +1,5 @@
+require 'colorize'
+
 class GatherRecipes::Recipe 
     attr_accessor :name, :category, :url, :measurements
     @@all = []
