@@ -59,8 +59,10 @@ class GatherRecipes::Scraper
         url = recipe.url
         page = Nokogiri::HTML(open(url))
 
-        full_recipe = page.css("ol.wprm-recipe-instructions").text.strip
-        puts full_recipe
+        full_recipe = page.css("ol.wprm-recipe-instructions li")[0]
+        full_recipe.css("p").each do |i|
+          puts i.text
+        end
     end
 
 end
