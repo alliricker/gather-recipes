@@ -56,7 +56,7 @@ class GatherRecipes::CLI
     end
 
     def show_user_recipe(recipe)
-        puts "Would you like to see the recipe? Y/N".colorize(:green)
+        puts "Would you like to see the instructions? Y/N".colorize(:green)
         input = gets.strip.upcase
         if input == "Y"
             recipe.get_full_recipe
