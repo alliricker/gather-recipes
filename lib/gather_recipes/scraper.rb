@@ -8,8 +8,7 @@ class GatherRecipes::Scraper
         
         categories.each do |c|
           name = c.css("a").text
-          ref = c.attr("value")
-          GatherRecipes::Category.new(name, ref)
+          GatherRecipes::Category.new(name)
         end
     end
 

@@ -2,7 +2,7 @@ class GatherRecipes::Category
     attr_accessor :name , :recipes
     @@all = []
 
-    def initialize (name, ref)
+    def initialize (name)
         @name = name
         @recipes = []
         save
