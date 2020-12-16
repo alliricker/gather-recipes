@@ -15,27 +15,18 @@ class GatherRecipes::Scraper
     def self.scrape_recipes(category)
         if category.name == "Healthy-ish" || category.name == "Vegetarian"
             url = "https://www.halfbakedharvest.com/category/recipes/diet-specific/#{category.name}/"
-            page = Nokogiri::HTML(open(url))
-        
-            recipes = page.css("a.recipe-block")
-        
-            recipes.each do |r|
-                name = r.css("span")[1].text.strip.chomp(".")
-                url = r.attribute('href')
-                GatherRecipes::Recipe.new(name, category, url)
-            end
-
-        elsif
+        else
             url = "https://www.halfbakedharvest.com/category/recipes/diet-specific/#{category.name}-recipes/"
-            page = Nokogiri::HTML(open(url))
+        end
         
-            recipes = page.css("a.recipe-block")
-        
-            recipes.each do |r|
-                name = r.css("span")[1].text.strip.chomp(".")
-                url = r.attribute('href')
-                GatherRecipes::Recipe.new(name, category, url)
-            end
+        page = Nokogiri::HTML(open(url))
+    
+        recipes = page.css("a.recipe-block")
+    
+        recipes.each do |r|
+            name = r.css("span")[1].text.strip.chomp(".")
+            url = r.attribute('href')
+            GatherRecipes::Recipe.new(name, category, url)
         end
     end
 
@@ -48,8 +39,8 @@ class GatherRecipes::Scraper
             amount = i.css("span.wprm-recipe-ingredient-amount").text.strip
             unit = i.css("span.wprm-recipe-ingredient-unit").text.strip
             name = i.css("span.wprm-recipe-ingredient-name").text.strip
-            recipe.measurements << amount << unit << name
-            puts "\u2767 #{amount} #{unit} #{name}"
+            recipe.measurements << "#{amount} #{unit} #{name}"
+           # puts "\u2767 #{amount} #{unit} #{name}"
         end
     end
 

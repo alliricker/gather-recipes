@@ -1,5 +1,5 @@
 require "colorize"
-
+require "pry"
 class GatherRecipes::CLI 
     def call
         puts "Welcome to Gather!".colorize(:blue).bold
@@ -51,7 +51,9 @@ class GatherRecipes::CLI
     end
 
     def show_recipe_measurements(recipe)
-        recipe.measurements
+        recipe.measurements.each do |m|
+            puts "\u2767 #{m}"
+        end
         show_user_recipe(recipe)
     end
 
@@ -73,3 +75,5 @@ class GatherRecipes::CLI
     end
 
 end
+
+
